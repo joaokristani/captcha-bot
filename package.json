@@ -1,0 +1,20 @@
+{
+	"name": "verify",
+	"version": "1.0",
+	"description": "Verify - Infinite community",
+	"main": "src/index",
+	"scripts": {
+		"start": "tsx src/index"
+	},
+	"keywords": [],
+	"author": "joaokristani",
+	"license": "ISC",
+        "dependencies": {
+            "@types/node": "^20.9.0",
+            "canvas": "^2.11.2",
+            "discord.js": "14.14.1",
+            "ts-node": "^10.9.1",
+            "typescript": "^5.2.2"
+        }
+    
+}
