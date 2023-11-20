@@ -1,8 +1,18 @@
+/*
+
+===
+🌠 Originalmente feito para o bot Buyzil#6524 (1132724441466536017)
+=====
+☣ By Infinite Community & joaokristani#0000 (https://discord.gg/infinite-community-1014921352500756500)
+========
+
+*/
+
+
 import { Client, GatewayIntentBits, AttachmentBuilder } from 'discord.js';
 import { createCanvas } from 'canvas';
 import * as config from './config.json';
 const { token, channel2, role2 } = config;
-
 
 const client = new Client({
   intents: [
@@ -21,23 +31,23 @@ client.on('ready', () => {
 });
 
 client.on('messageCreate', async (message) => {
-  if (message.channel.id !== channel2) {
-    return;
-  }
 
   if (message.content.toLowerCase() === '!captcha') {
+    if (message.channel.id !== channel2) return;
+
     captchausercount2++;
 
     let guildmember = message.member;
     const rolecheck = guildmember?.guild.roles.cache.find(role => role.id === role2);
 
     if (rolecheck && guildmember?.roles.cache.has(rolecheck.id)) {
-      message.reply('Você já tem o cargo; não precisa fazer o captcha novamente');
+      message.reply('<:no:1171390063335194624> Você já tem o cargo; não precisa fazer o captcha novamente');
+      captchausercount2--;
       return;
     }
 
     if (captchauser.has(message.author.id)) {
-      message.reply('Termine o captcha anterior');
+      message.reply('<:no:1171390063335194624> Você precisa terminar o captcha anterior para utilizar `!captcha` novamente');
       captchausercount2--;
       return;
     }
@@ -60,7 +70,7 @@ client.on('messageCreate', async (message) => {
     ctx.textBaseline = 'middle';
     ctx.strokeText(textcap, canvas.width / 2, canvas.height / 2);
     ctx.fillText(textcap, canvas.width / 2, canvas.height / 2);
-    ctx.strokeStyle = '#FFF';
+    ctx.strokeStyle = '#fff';
     for (let i = 0; i < 5; i++) {
       ctx.beginPath();
       ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
@@ -81,8 +91,8 @@ client.on('messageCreate', async (message) => {
     const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: 'captcha.png' });
     await message.channel.send({
       files: [attachment],
-      content: 'Digite as letras da imagem abaixo:',
-    }).catch(error => { });
+      content: 'Você tem **15 Segundos** para responder\nDigite as letras da imagem abaixo:\n',
+    }).catch(error => {console.error});
 
     const filter = (response: { author: { id: string; }; }) => {
       return response.author.id === message.author.id;
@@ -95,39 +105,43 @@ client.on('messageCreate', async (message) => {
         time: 15000,
         errors: ['time'],
       });
-
+    
       const entertext = usere.first()?.content.toLowerCase();
-
+    
       if (entertext === textcap.toLowerCase()) {
         const roleadd = guildmember?.guild.roles.cache.find((role) => role.id === role2);
         if (roleadd) {
           await guildmember?.roles.add(roleadd);
-          message.reply('Sucesso! O Cargo foi adicionado');
+          message.reply('<:yes:1171390048608989234> Sucesso! O Cargo foi adicionado');
         } else {
-          throw new Error('Cargo não encontrado');
+          throw new Error('<:no:1171390063335194624> Cargo não encontrado');
         }
       } else {
-        message.reply('O captcha está incorreto');
+        message.reply('<:no:1171390063335194624> O captcha está incorreto');
       }
     } catch (err) {
-      console.error('Erro ao adicionar cargo:', (err as Error).message);
-      message.reply('Aconteceu um erro ao adicionar o cargo, faça o captcha novamente');
+      if ((err as Error).message === undefined) {
+        message.reply('<:no:1171390063335194624> Você demorou demais para responder o captcha')
+      } else {
+        message.reply(`<:no:1171390063335194624> Aconteceu um erro crítico`);
+        console.error('Erro ao adicionar cargo:', (err as Error).message);
+      }
     } finally {
       captchauser.delete(message.author.id);
-
-      if (captchausercount2 >= 5 && !messagetimeout) {
+    
+      if (captchausercount2 >= 2 && !messagetimeout) {
         messagetimeout = setTimeout(() => {
-          message.channel.send('**Em testes**\nUtilize `!captcha` para ganhar o cargo Desbloqueado');
+          message.channel.send('<:870764844012412938:1171389557711835207> **Em testes**\n<:reply:1171390418756321350> Utilize `!captcha` para ganhar o cargo Desbloqueado');
           captchausercount2 = 0;
           messagetimeout = null;
-        }, 60000);
+        }, 300000);
       }
     }
   }
 });
 
 function randtext() {
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz123456789@'; //L minusculo e 0 foram retirados por causa do bold
   let text = '';
 
   for (let i = 0; i < 6; i++) {
