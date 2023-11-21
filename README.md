@@ -6,6 +6,7 @@
 É apenas um Captcha BOT, ele adiciona o cargo no membro depois dele tiver sucesso no Captcha
 
 ![image](https://github.com/joaokristani/captcha-bot/assets/136858930/f4af7ca9-e4ea-47ef-8cc9-61f68b128c1a)
+
 ![image](https://github.com/joaokristani/captcha-bot/assets/136858930/6368720f-b952-4536-9a08-89eaf8d0cb4f)
 
 **🌠 Originalmente feito para o bot Buyzil#6524 (1132724441466536017)**
