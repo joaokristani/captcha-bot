@@ -21,7 +21,7 @@
 - [**Discord Server Cloner: Website**](https://github.com/joaokristani/Discord-server-cloner2web)
  - ![Stars](https://img.shields.io/github/stars/joaokristani/Discord-server-cloner2web.svg?style=flat-square&logo=github&colorB=blue&label=Stars) ![Forks](https://img.shields.io/github/forks/joaokristani/Discord-server-cloner2web.svg?style=flat-square&logo=github&colorB=blue&label=Forks)
 - [**Old Discord Server Cloner**](https://github.com/joaokristani/discord-server-cloner)
- - ![Stars](https://img.shields.io/github/stars/joaokristani/captcha-bot.svg?style=flat-square&logo=github&colorB=blue&label=Stars) ![Forks](https://img.shields.io/github/forks/joaokristani/captcha-bot.svg?style=flat-square&logo=github&colorB=blue&label=Forks)
+ - ![Stars](https://img.shields.io/github/stars/joaokristani/discord-server-cloner.svg?style=flat-square&logo=github&colorB=blue&label=Stars) ![Forks](https://img.shields.io/github/forks/joaokristani/discord-server-cloner.svg?style=flat-square&logo=github&colorB=blue&label=Forks)
 
 ----
 ### Thank you for your support!
